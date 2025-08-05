@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: thanuraksha-email-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: GMAIL_USER
+        value: gandalabalaji@gmail.com
+      - key: GMAIL_PASS
+        sync: false  # This will be set manually in Render dashboard for security
+    healthCheckPath: /
+    autoDeploy: true
+    branch: main
